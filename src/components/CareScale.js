@@ -3,6 +3,11 @@ import Water from "../assets/water.svg";
 
 function CareScale({ scaleValue, careType }) {
   const range = [1, 2, 3];
+  const quantity = {
+    1: "peu",
+    2: "modérement",
+    3: "beaucoup",
+  };
 
   const scaleType =
     careType === "light" ? (
@@ -11,7 +16,15 @@ function CareScale({ scaleValue, careType }) {
       <img src={Water} alt="water-icon" />
     );
   return (
-    <div>
+    <div
+      onClick={() =>
+        alert(
+          `Cette plante requiert ${quantity[scaleValue]} ${
+            careType === "light " ? "de lumière" : "d'eau"
+          }`
+        )
+      }
+    >
       {range.map((rangeElement) =>
         scaleValue >= rangeElement ? (
           <span key={rangeElement.toString()}>{scaleType}</span>
